@@ -190,7 +190,7 @@ class Profiler {
 	}
 
 	/**
-	 * Build all of the current file data
+	 * Build all of the current profiling data
 	 *
 	 * @return array
 	 */
@@ -216,7 +216,7 @@ class Profiler {
 			}
 		}
 
-		// Now that we've gathered all the data, do the finishing touches
+		// Now that we've gathered all the data, let's do the finishing touches
 		static::$files_total_size = static::readable_file_size(static::$files_total_size);
 		static::$files_largest    = static::readable_file_size(static::$files_largest);
 
