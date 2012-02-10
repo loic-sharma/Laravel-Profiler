@@ -154,5 +154,3 @@ class Profiler {
 		return sprintf($format, $size, $sizestring);
 	}
 }
-
-new Profiler;
