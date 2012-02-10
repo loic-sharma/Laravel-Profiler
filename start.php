@@ -11,11 +11,12 @@ Event::listen('laravel: query', function($sql, $bindings, $time)
 	Profiler::$queries[] = $sql;
 });
 
-Event::listen('laravel: done', function()
+View::composer('profiler::display', function ($profiler)
 {
-	Profiler::compile_file_data();
-
-	echo View::make('profiler::display');
+	foreach(Profiler::compile_data() as $key => $value)
+	{
+		$profiler->with($key, $value);
+	}
 });
 
 Autoloader::map(array(

@@ -194,8 +194,9 @@ class Profiler {
 	 *
 	 * @return array
 	 */
-	public static function compile_file_data()
+	public static function compile_data()
 	{
+		// Get the file data
 		$files = get_included_files();
 
 		foreach($files as $file)
@@ -215,14 +216,26 @@ class Profiler {
 			}
 		}
 
-		// Now that we've gathered the data we can prepare it
+		// Now that we've gathered all the data, do the finishing touches
 		static::$files_total_size = static::readable_file_size(static::$files_total_size);
 		static::$files_largest    = static::readable_file_size(static::$files_largest);
 
 		return array(
-			'files'            => static::$files,
-			'files_total_size' => static::$files_total_size,
-			'files_largest'    => static::$files_largest,
+			'logs'               => static::$logs,
+			'logs_count'         => static::$logs_count,
+			'error_logs'         => static::$error_logs,
+			'memory_logs'        => static::$memory_logs,
+			'speed_logs'         => static::$speed_logs,
+			'load_time'          => static::load_time(),
+			'queries'            => static::$queries,
+			'query_total_time'   => static::$query_total_time,
+			'query_duplicates'   => static::$query_duplicates,
+			'memory'             => static::memory(),
+			'files'              => static::$files,
+			'files_total_size'   => static::$files_total_size,
+			'files_largest'      => static::$files_largest,
+			'memory_limit'       => ini_get('memory_limit'),
+			'max_execution_time' => ini_get('max_execution_time'),
 		);
 	}
 
