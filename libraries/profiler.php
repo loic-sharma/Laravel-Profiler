@@ -2,20 +2,90 @@
 
 class Profiler {
 
+	/**
+	 * All of the recorded logs
+	 *
+	 * @var array
+	 */
 	public static $logs = array();
+
+	/**
+	 * The number of messages logged (not including memory, speed, and error
+	 * logs)
+	 *
+	 * @var int
+	 */
 	public static $logs_count = 0;
+
+	/**
+	 * The number of memory logs
+	 *
+	 * @var int
+	 */
 	public static $memory_logs = 0;
+
+	/**
+	 * The number of speed logs
+	 *
+	 * @var int
+	 */
 	public static $speed_logs = 0;
+
+	/**
+	 * The number of error logs
+	 *
+	 * @var int
+	 */
 	public static $error_logs = 0;
 
+	/**
+	 * The number of duplicate queries
+	 *
+	 * @var int
+	 */
 	public static $query_duplicates = 0;
+
+	/**
+	 * The total time taken to execute all of the queries
+	 *
+	 * @var int
+	 */
 	public static $query_total_time = 0;
+
+	/**
+	 * All of the executed queries
+	 *
+	 * @var array
+	 */
 	public static $queries = array();
 
+	/**
+	 * All of the loaded files
+	 *
+	 * @var array
+	 */
 	public static $files = array();
-	public static $files_total_size = 0;
-	public static $files_largest;
 
+	/**
+	 * The total size of all the loaded files
+	 *
+	 * @var string
+	 */
+	public static $files_total_size = 0;
+
+	/**
+	 * The size of the largest loaded file
+	 *
+	 * @var string
+	 */
+	public static $files_largest = 0;
+
+	/**
+	 * Log a message
+	 *
+	 * @param  string  $message
+	 * @return void
+	 */
 	public static function log($message)
 	{
 		static::$logs[] = array(
@@ -26,6 +96,13 @@ class Profiler {
 		static::$logs_count++;
 	}
 
+	/**
+	 * Log the current memory usage or the memory used to store a variable
+	 *
+	 * @param  string  $name
+	 * @param  mixed   $value
+	 * @return void
+	 */
 	public static function log_memory($name = FALSE, $value = FALSE)
 	{
 		if($name !== FALSE)
@@ -49,6 +126,12 @@ class Profiler {
 		static::$memory_logs++;
 	}
 
+	/**
+	 * Log the current execution time
+	 *
+	 * @param  string  $message
+	 * @return void
+	 */
 	public static function log_speed($message = 'Benchmark')
 	{
 		if($message == 'Benchmark')
@@ -65,6 +148,13 @@ class Profiler {
 		static::$speed_logs++;
 	}
 
+	/**
+	 * Log an error
+	 *
+	 * @param  Exception  $exception
+	 * @param  string     $message
+	 * @return void
+	 */
 	public static function log_error($exception, $message = 'error')
 	{
 		$message  = 'Line ' . $exception->getLine() . ' ' . $message . '<br>';
@@ -78,16 +168,32 @@ class Profiler {
 		static::$error_logs++;
 	}
 
+	/**
+	 * Get the current execution time
+	 *
+	 * @param  int  $decimals
+	 * @return int
+	 */
 	public static function load_time($decimals = 5)
 	{
 		return number_format(microtime(TRUE) - LARAVEL_START, $decimals);
 	}
 
+	/**
+	 * Get the highest memory usage
+	 *
+	 * @return string
+	 */
 	public static function memory()
 	{
 		return static::readable_file_size(memory_get_peak_usage());
 	}
 
+	/**
+	 * Build all of the current file data
+	 *
+	 * @return array
+	 */
 	public static function compile_file_data()
 	{
 		$files = get_included_files();
@@ -111,7 +217,7 @@ class Profiler {
 
 		// Now that we've gathered the data we can prepare it
 		static::$files_total_size = static::readable_file_size(static::$files_total_size);
-		static::$files_largest    = static::readable_file_size(static::$files_largest);	
+		static::$files_largest    = static::readable_file_size(static::$files_largest);
 
 		return array(
 			'files'            => static::$files,
@@ -120,6 +226,13 @@ class Profiler {
 		);
 	}
 
+	/**
+	 * Convert a file's size into a readable format
+	 *
+	 * @param  int     $size
+	 * @param  string  $format
+	 * @return string
+	 */
 	private static function readable_file_size($size, $format = null)
 	{
 		// adapted from code at http://aidanlister.com/repos/v/function.size_readable.php
