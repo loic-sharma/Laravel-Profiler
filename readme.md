@@ -35,17 +35,16 @@ Want to benchmark your code? Easy!
 
 	Profiler::log_speed('Load time to reach this checkpoint');
 
-Need to watch your memory usage? Juse use the **log_memory** method to see the memory currently used:
+Need to watch your memory usage? Just use the **log_memory** method to see the memory currently used:
 
 	Profiler::log_memory('A message to keep track of where I am');
 
 You can even keep track of the memory used by a variable:
 
-	// Logs the memory used by $somevariable
 	$somevariable = 'somevalue';
 
 	Profiler::log_memory('my variable', $somevariable);
 
-Of course, you can alsao log errors:
+Of course, you can also log errors:
 
 	Profiler::log_error(new Exception, 'Oops I did a mistake!');
