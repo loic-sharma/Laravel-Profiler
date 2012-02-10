@@ -6,7 +6,11 @@ To download the bundle run:
 
 	php artisan bundle:install profiler
 
-Once the bundle has been downloaded you will need to add the bundle to the **auto** array in the application config file.
+To install it run the following command:
+
+	php artisan bundle:publish
+
+Once that is complete you will need to add the bundle to the **auto** array in the application config file.
 
 ## Using Profiler
 
