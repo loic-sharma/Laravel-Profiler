@@ -30,7 +30,7 @@
 
 	<div id="pqp-console" class="pqp-box">
 		<?php if(count($logs) == 0): ?>
-			<h3>This panel has no log items.</h3>
+			<h3>There are no logs.</h3>
 		<?php else: ?>
 			<table class="side" cellspacing="0">
 				<tr>
@@ -62,7 +62,7 @@
 
 	<div id="pqp-speed" class="pqp-box">
 		<?php if($speed_logs == 0): ?>
-			<h3>This panel has no log items.</h3>
+			<h3>There are no speed logs.</h3>
 		<?php else: ?>
 			<table class="side" cellspacing="0">
 				<tr><td><var><?php echo $load_time * 1000; ?> ms</var><h4>Load Time</h4></td></tr>
@@ -95,13 +95,13 @@
 				<?php endforeach; ?>
 			</table>
 		<?php else: ?>
-			<h3>No queries were executed</h3>
+			<h3>No queries were executed.</h3>
 		<?php endif; ?>
 	</div>
 		
 	<div id="pqp-memory" class="pqp-box">
 		<?php if($memory_logs == 0): ?>
-			<h3>This panel has no log items.</h3>
+			<h3>There are no memory logs.</h3>
 		<?php else: ?>
 			<table class="side" cellspacing="0">
 				<tr>
