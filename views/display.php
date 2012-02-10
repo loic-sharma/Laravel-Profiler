@@ -1,5 +1,9 @@
-<!-- JavaScript -->
+<link href="<?php echo URL::to_asset('bundles/profiler/css/pQp.css'); ?>" rel="stylesheet" />
+<script type="text/javascript">  
+
+</script>
 <script type="text/javascript" src="<?php echo URL::to_asset('bundles/profiler/js/pqp.js'); ?>"></script>
+
 <div id="pqp-container" class="pQp" style="display:none">
 	<div id="pQp" class="console">
 		<table id="pqp-metrics" cellspacing="0">
