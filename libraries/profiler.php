@@ -17,19 +17,6 @@ class Profiler {
 	public static $files_total_size = 0;
 	public static $files_largest;
 
-	public function __construct()
-	{
-		DB::query('SELECT * FROM forums');
-		DB::query('SELECT * FROM posts');
-
-		$path  = realpath(__DIR__ . DS . '../');
-		$path .= DS.'pqp'.DS;
-
-		include $path.'classes'.DS.'PhpQuickProfiler.php';
-
-		$this->pqp = new PhpQuickProfiler(LARAVEL_START, $path);
-	}
-
 	public static function log($message)
 	{
 		static::$logs[] = array(
@@ -166,24 +153,6 @@ class Profiler {
 		}
 
 		return sprintf($format, $size, $sizestring);
-	}
-
-	public function __destruct()
-	{
-		$var = 'x';
-
-		Profiler::log('test');
-		Profiler::log_memory('var', $var);
-		Profiler::log_memory();
-		Profiler::log_speed();
-		Profiler::log_error(new Exception, 'Remove this :P');
-
-		Console::log('test');
-		Console::logMemory($var, 'var');
-		Console::logSpeed();
-		Console::logError(new Exception, 'test');
-		Console::logMemory();
-		//$this->pqp->display();
 	}
 }
 
