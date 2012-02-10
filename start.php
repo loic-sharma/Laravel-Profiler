@@ -1,5 +1,9 @@
 <?php
 
+Autoloader::map(array(
+	'Profiler' => __DIR__ . DS . 'libraries' . DS . 'profiler.php',
+));
+
 Event::listen('laravel: query', function($sql, $bindings, $time)
 {
 	if(in_array($sql, Profiler::$queries))
@@ -18,7 +22,3 @@ View::composer('profiler::display', function ($profiler)
 		$profiler->with($key, $value);
 	}
 });
-
-Autoloader::map(array(
-	'Profiler' => __DIR__ . DS . 'libraries' . DS . 'profiler.php',
-));
