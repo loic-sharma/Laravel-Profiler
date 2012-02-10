@@ -12,13 +12,13 @@ Once that is complete you will need to add the bundle to the **auto** array in t
 
 ## Displaying Profiler
 
-There are several ways you can load Profiler onto your site. You can simply load Profiler through a view:
+There are several ways you can load Profiler onto your site. For example you can simply use a view:
 
 ```php
 echo View::make('profiler::display');
 ```
 
-If you want, you can simply nest the view within your own. Or, you can simply use the profiler filter:
+Of course, you can just nest the view if you want. Or, you can simply use the profiler filter:
 
 ```php
 public function __construct()
