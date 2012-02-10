@@ -22,3 +22,8 @@ View::composer('profiler::display', function ($profiler)
 		$profiler->with($key, $value);
 	}
 });
+
+Filter::register('profiler', function()
+{
+	echo View::make('profiler::display');
+});
