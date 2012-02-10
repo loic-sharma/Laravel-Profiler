@@ -10,11 +10,11 @@ Once the bundle has been downloaded you will need to add the bundle to the **aut
 
 ## Using Profiler
 
-There are several ways you can load the profiler onto your site. For example you can simply load the profiler's view:
+There are several ways you can load the profiler onto your site. You can simply load Profiler through a view:
 
 	echo View::make('profiler::display');
 
-If you want, you can simply nest the view withing your own. Or, you can simply use the profiler filter:
+If you want, you can simply nest the view within your own. Or, you can simply use the profiler filter:
 
 	public function __construct()
 	{
