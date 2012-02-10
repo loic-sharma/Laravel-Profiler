@@ -7,7 +7,6 @@ class Profiler {
 	public static $memory_logs = 0;
 	public static $speed_logs = 0;
 	public static $error_logs = 0;
-	
 
 	public static $query_duplicates = 0;
 	public static $query_total_time = 0;
