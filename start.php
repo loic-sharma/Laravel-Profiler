@@ -4,7 +4,7 @@ Autoloader::map(array(
 	'Profiler' => __DIR__ . DS . 'libraries' . DS . 'profiler.php',
 ));
 
-Event::listen('laravel: query', function($sql, $bindings, $time)
+Event::listen('laravel.query', function($sql, $bindings, $time)
 {
 	if(in_array($sql, Profiler::$queries))
 	{
