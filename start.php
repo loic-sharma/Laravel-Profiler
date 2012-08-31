@@ -1,5 +1,7 @@
 <?php
 
+**Note:*** As of Laravel 3.2 this bundle is no longer necessary. Simply enable Laravel's profiler in the application config files.
+
 Autoloader::map(array(
 	'Profiler' => __DIR__ . DS . 'libraries' . DS . 'profiler.php',
 ));
